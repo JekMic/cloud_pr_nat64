@@ -1,10 +1,10 @@
 //nat64自动填充proxyip，无需且不支持proxyip设置
 import { connect } from "cloudflare:sockets";
 const WS_READY_STATE_OPEN = 1;
-let userID = "86c50e3a-5b87-49dd-bd20-03c7f2735e40";
+let userID = "e8a1159e-d873-5627-293e-7e164105765b";
 const cn_hostnames = [""];
 // 添加需要直接使用NAT64的域名列表，支持从环境变量扩展
-let proxydomains = ["twitch.tv","ttvnw.net"];
+let proxydomains = ["x.com"];
 
 // 检查域名是否匹配，包括子域名
 function isDomainMatch(hostname, pattern) {
@@ -347,7 +347,7 @@ async function handlevlessWebSocket(request) {
               }
               return num.toString(16).padStart(2, "0");
             });
-            const prefixes = ["2001:67c:2960:6464::"]; //,'2a01:4f9:c010:3f02:64::'
+            const prefixes = ["2602:fc59:b0:64::"]; //,'2a01:4f9:c010:3f02:64::','2001:67c:2960:6464::'
             const chosenPrefix =
               prefixes[Math.floor(Math.random() * prefixes.length)];
             return `[${chosenPrefix}${hex[0]}${hex[1]}:${hex[2]}${hex[3]}]`;
